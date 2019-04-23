@@ -1,5 +1,8 @@
 package com.soni.entity;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class Person {
 	/*
 CREATE TABLE person(
@@ -13,10 +16,12 @@ address VARCHAR(20)
 
 
 	 */
-	
+	@NotEmpty
 	String name;
 	String age;
+	
 	String nation;
+	@Size(max=6)
 	String address;
 	public String getName() {
 		return name;

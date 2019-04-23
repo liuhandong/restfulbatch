@@ -2,12 +2,16 @@ package com.soni.config;
 
 import java.util.List;
 
+import javax.sql.DataSource;
+
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.repository.JobRepository;
+import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
@@ -15,12 +19,15 @@ import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.batch.item.validator.BeanValidatingItemProcessor;
 import org.springframework.batch.item.validator.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import com.soni.entity.Person;
 import com.soni.repository.CustomizedRepository;
@@ -46,11 +53,27 @@ public class PersonJobConfig {
 	@Autowired
 	private CustomizedRepository customizedRepository;
     
-
+	@Bean
+	public JobRepository createJobRepository(@Qualifier("dataSource")DataSource dataSource,@Qualifier("transactionManager") PlatformTransactionManager transactionManager) throws Exception {
+		JobRepositoryFactoryBean factory = new JobRepositoryFactoryBean();
+		factory.setDataSource(dataSource);
+		factory.setTransactionManager(transactionManager);
+		factory.setIsolationLevelForCreate("ISOLATION_SERIALIZABLE");
+		factory.setTablePrefix("BATCH_");
+		factory.setMaxVarCharLength(1000);
+		return factory.getObject();
+	}
 
     @Bean
     public Job personJob(/*, @Qualifier("step2") Step step2*/) {
         return jobs.get("myJob").start(step1())/*.next(step2)*/.build();
+    }
+    
+    @Bean
+    public BeanValidatingItemProcessor<Person> beanValidatingItemProcessor() {
+	    BeanValidatingItemProcessor<Person> beanValidatingItemProcessor = new BeanValidatingItemProcessor<>();
+	    beanValidatingItemProcessor.setFilter(true);
+	    return beanValidatingItemProcessor;
     }
     
 	/**
@@ -114,7 +137,7 @@ public class PersonJobConfig {
     	        	System.out.println("===="+c);
     	        }
     	        customizedRepository.myBatisUpdateSQL(sqlb.toString());
-    	        customizedRepository.myBatisUpdateSQL("delete from person");
+    	        //customizedRepository.myBatisUpdateSQL("delete from person");
     	    }
     	};
         return writer;
@@ -150,7 +173,8 @@ public class PersonJobConfig {
                 .get("step1")
                 .<Person,Person>chunk(10)//批处理每次提交10条数据
                 .reader(reader())//给step绑定reader
-                .processor(processor())//给step绑定processor
+                //.processor(processor())//给step绑定processor
+                .processor(beanValidatingItemProcessor())
                 .writer(writer())//给step绑定writer
                 .build();
     }

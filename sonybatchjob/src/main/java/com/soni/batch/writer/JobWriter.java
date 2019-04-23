@@ -25,6 +25,6 @@ public class JobWriter implements ItemWriter<Person> {
         	c++;
         }
         customizedRepository.myBatisUpdateSQL(sqlb.toString());
-        customizedRepository.myBatisUpdateSQL("delete from person");
+        //customizedRepository.myBatisUpdateSQL("delete from person");
     }
 }
