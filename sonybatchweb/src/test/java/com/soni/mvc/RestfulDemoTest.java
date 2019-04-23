@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.batch.test.context.SpringBatchTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -24,6 +25,7 @@ import com.soni.config.WebConfig;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = WebConfig.class)
 @WebAppConfiguration
+@SpringBatchTest
 public class RestfulDemoTest {
 	@Autowired 
     private WebApplicationContext ctx;
