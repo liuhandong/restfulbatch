@@ -5,7 +5,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.batch.test.context.SpringBatchTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -15,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.soni.config.RootConfig;
 import com.soni.config.WebConfig;
 /**
  * Junit4中的新断言 https://blog.csdn.net/smxjant/article/details/78206435
@@ -23,9 +23,8 @@ import com.soni.config.WebConfig;
  *
  */
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = WebConfig.class)
+@ContextConfiguration(classes = {WebConfig.class,RootConfig.class})
 @WebAppConfiguration
-@SpringBatchTest
 public class RestfulDemoTest {
 	@Autowired 
     private WebApplicationContext ctx;
@@ -38,7 +37,7 @@ public class RestfulDemoTest {
     }
 
 	@Test
-    public void testShowHome() throws Exception {
+    public void testShowHello() throws Exception {
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/hello/abcd"))
                 .andExpect(status().isOk());
