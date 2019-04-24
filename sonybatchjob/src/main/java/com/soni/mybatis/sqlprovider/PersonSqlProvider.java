@@ -20,7 +20,7 @@ public class PersonSqlProvider {
         sb.append(" (name,age,nation,address)");
         sb.append(" values ");
         MessageFormat mf = new MessageFormat(
-                "(#'{'list[{0}].name},#'{'list[{0}].age},#'{'list[{0}].nation},#'{'list[{0}].address})");
+                "(#{list[{0}].name},#{list[{0}].age},#{list[{0}].nation},#{list[{0}].address})");
         for (int i = 0; i < list.size(); i++) {
             sb.append(mf.format(new Object[] { i }));
             if (i < list.size() - 1) {
