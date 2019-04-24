@@ -8,6 +8,7 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.soni.entity.Person;
 import com.soni.mybatis.PersonMapper;
 @Repository
 public class CustomizedRepositoryImpl extends SqlSessionDaoSupport implements CustomizedRepository{
@@ -30,4 +31,9 @@ public class CustomizedRepositoryImpl extends SqlSessionDaoSupport implements Cu
     {
         return employeeMapper.myBatisUpdateSQL(sql);
     }
+
+	@Override
+	public boolean addBatch(List<Person> persons) {		
+		return employeeMapper.addBatch(persons);
+	}
 }

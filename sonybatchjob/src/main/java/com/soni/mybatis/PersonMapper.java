@@ -21,7 +21,7 @@ import com.soni.mybatis.sqlprovider.PersonSqlProvider;
  *
  */
 @Mapper
-public interface PersonMapper {
+public interface PersonMapper extends BaseMapper<Person> {
 	
 	@InsertProvider(type = PersonSqlProvider.class, method = "batchInsert")
     boolean addBatch(List<Person> persons);

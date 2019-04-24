@@ -1,37 +1,36 @@
 package com.soni.mybatis.sqlprovider;
 
-import java.text.MessageFormat;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.jdbc.SQL;
 import org.springframework.util.StringUtils;
 
 import com.soni.entity.Person;
+import com.soni.mybatis.base.BaseSqlProvider;
 
-public class PersonSqlProvider {
+public class PersonSqlProvider extends BaseSqlProvider<Person> {
 	private String TABLE_NAME = "person";
 	
-	public String batchInsert(Map<String, List<Person>> map) {
-        List<Person> list = map.get("list");
-        StringBuilder sb = new StringBuilder();
-        sb.append("insert into ");
-        sb.append(TABLE_NAME);
-        sb.append(" (name,age,nation,address)");
-        sb.append(" values ");
-        MessageFormat mf = new MessageFormat(
-                "(#{list[{0}].name},#{list[{0}].age},#{list[{0}].nation},#{list[{0}].address})");
-        for (int i = 0; i < list.size(); i++) {
-            sb.append(mf.format(new Object[] { i }));
-            if (i < list.size() - 1) {
-                sb.append(",");
-            }
-        }
-
-        //insert into person (name,age,nation,address) values
-        System.out.println(sb.toString());
-        return sb.toString();
-    }
+//	public String batchInsert(Map<String, List<Person>> map) {
+//        List<Person> list = map.get("list");
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("insert into ");
+//        sb.append(TABLE_NAME);
+//        sb.append(" (name,age,nation,address)");
+//        sb.append(" values ");
+//        MessageFormat mf = new MessageFormat(
+//                "(#{list[{0}].name},#{list[{0}].age},#{list[{0}].nation},#{list[{0}].address})");
+//        for (int i = 0; i < list.size(); i++) {
+//            sb.append(mf.format(new Object[] { i }));
+//            if (i < list.size() - 1) {
+//                sb.append(",");
+//            }
+//        }
+//
+//        //insert into person (name,age,nation,address) values
+//        System.out.println(sb.toString());
+//        return sb.toString();
+//    }
 
     /**         
      * 

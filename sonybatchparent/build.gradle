@@ -1,6 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'maven'
-apply plugin: "eclipse"
+//apply plugin: "eclipse"
 
 subprojects {
 
@@ -23,33 +23,34 @@ subprojects {
 
     //配置依赖
     dependencies {
-        compile(
-		    "org.apache.tomcat:tomcat-servlet-api:${tomcatVersion}",
-			"org.apache.tomcat:tomcat-el-api:${tomcatVersion}",
-			"org.apache.tomcat:tomcat-jasper-el:${tomcatVersion}",
-			"org.springframework:spring-beans:${springVersion}",
-			"org.springframework:spring-context:${springVersion}",
-			"org.springframework:spring-context-support:${springVersion}",
-			"org.springframework:spring-web:${springVersion}",
-			"org.springframework:spring-webmvc:${springVersion}",
-			"org.springframework.batch:spring-batch-core:4.1.1.RELEASE",
-			"javax.validation:validation-api:2.0.1.Final",
-			"org.springframework:spring-tx:${springVersion}",
-			"mysql:mysql-connector-java:8.0.13",
-			"org.mybatis:mybatis-spring:2.0.1",
-			"org.mybatis:mybatis:3.4.6",
-			"org.springframework:spring-jdbc:${springVersion}",
-			"org.springframework:spring-test:${springVersion}",
-			"org.apache.logging.log4j:log4j-api:2.11.1",
-			"org.apache.logging.log4j:log4j-to-slf4j:2.11.1",
-			"org.slf4j:jul-to-slf4j:1.7.25",
-			"org.slf4j:slf4j-log4j12:1.7.25",
-			"org.slf4j:slf4j-api:1.7.25",
-			"com.fasterxml.jackson.core:jackson-databind:2.9.8",
-			"org.hibernate.validator:hibernate-validator:6.0.14.Final",
-			"org.mockito:mockito-core:1.9.5"
-        )
+    /*
+        compile "org.apache.tomcat:tomcat-servlet-api:${tomcatVersion}"
+		compile "org.apache.tomcat:tomcat-el-api:${tomcatVersion}"
+		compile "org.apache.tomcat:tomcat-jasper-el:${tomcatVersion}"
+		compile "org.springframework:spring-beans:${springVersion}"
+		compile "org.springframework:spring-context:${springVersion}"
+		compile "org.springframework:spring-context-support:${springVersion}"
+		compile "org.springframework:spring-web:${springVersion}"
+		compile "org.springframework:spring-webmvc:${springVersion}"
+		compile "org.springframework.batch:spring-batch-core:4.1.1.RELEASE"
+		compile "javax.validation:validation-api:2.0.1.Final"
+		compile "org.springframework:spring-tx:${springVersion}"
+		compile "mysql:mysql-connector-java:8.0.13"
+		compile "org.mybatis:mybatis-spring:2.0.1"
+		compile "org.mybatis:mybatis:3.4.6"
+		compile "org.springframework:spring-jdbc:${springVersion}"
+		compile "org.springframework:spring-test:${springVersion}"
+		compile "org.apache.logging.log4j:log4j-api:2.11.1"
+		compile "org.apache.logging.log4j:log4j-to-slf4j:2.11.1"
+		compile "org.slf4j:jul-to-slf4j:1.7.25"
+		compile "org.slf4j:slf4j-log4j12:1.7.25"
+		compile "org.slf4j:slf4j-api:1.7.25"
+		compile "com.fasterxml.jackson.core:jackson-databind:2.9.8"
+		compile "org.hibernate.validator:hibernate-validator:6.0.14.Final"
+		compile "org.mockito:mockito-core:1.9.5"
+		
         testCompile("junit:junit:${junitVersion}")
+        */
     }
 }
 
