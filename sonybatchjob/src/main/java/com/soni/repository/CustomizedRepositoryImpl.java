@@ -36,4 +36,9 @@ public class CustomizedRepositoryImpl extends SqlSessionDaoSupport implements Cu
 	public boolean addBatch(List<Person> persons) {		
 		return employeeMapper.addBatch(persons);
 	}
+
+	@Override
+	public int insert(Person person) {		
+		return employeeMapper.insert(person);
+	}
 }

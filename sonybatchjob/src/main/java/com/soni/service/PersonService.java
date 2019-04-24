@@ -31,5 +31,16 @@ public class PersonService {
 		boolean result = customizedRepository.addBatch(persons);
 		return result;
 	}
+	
+	@Transactional(rollbackForClassName= {"com.soni.exception.DBException"})
+	public int addPerson() {
+		Person person = new Person();
+		person.setName("0name["+0+"]");
+		person.setAge("26");
+		person.setNation("china");
+		person.setAddress("dl45");
+		
+		return customizedRepository.insert(person);
+	}
 
 }

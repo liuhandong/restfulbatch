@@ -18,7 +18,8 @@ public class PersonServiceTest {
 	
 	@Test
 	public void personServiceTest() {
-		personService.addSomeBatch();
+		//personService.addSomeBatch();
+		personService.addPerson();
 	}
 
 }

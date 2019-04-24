@@ -13,4 +13,6 @@ public interface CustomizedRepository {
     int myBatisUpdateSQL(@Param("sql")String sql);
     
     boolean addBatch(List<Person> persons);
+    
+    int insert(Person person);
 }

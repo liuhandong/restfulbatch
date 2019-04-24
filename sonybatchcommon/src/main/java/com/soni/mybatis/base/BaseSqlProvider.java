@@ -31,7 +31,7 @@ public class BaseSqlProvider<T> {
 		StringBuilder sdr = new StringBuilder();
 		if(sameTableMap) {
 					
-			Field[] fields = t.getClass().getFields();
+			Field[] fields = t.getClass().getDeclaredFields();
 			for (int i = 0; i < fields.length; i++) {
 				Field field = fields[i];
 				if(field.getAnnotationsByType(KeyIgnore.class).length==0) {
@@ -55,10 +55,7 @@ public class BaseSqlProvider<T> {
 	 * sameTableMap be false to overwrite here method
 	 * @return
 	 */
-	String getTableName() {
-		Assert.isNull(getFieldList(),"Must overwrite getTableName() method.");
-		return null;
-	}
+	//abstract protected String getTableName();
 	
 	/**
 	 * table field name list
@@ -66,9 +63,10 @@ public class BaseSqlProvider<T> {
 	 * @return
 	 */
 	String getFieldList() {
-		Assert.isNull(getFieldList(),"Must overwrite getFieldList() method.");
+		Assert.isNull(null,"Must overwrite getFieldList() method.");
 		return null;
 	}
+	
 	/**
 	 * 
 	 * @param isStm
@@ -80,11 +78,13 @@ public class BaseSqlProvider<T> {
 	public String insert(T t) {
         StringBuilder sb = new StringBuilder();
         sb.append("insert into ");
-        sb.append(getTableName());
+        sb.append("person");
         sb.append(" ("+getFieldList()+")");
         sb.append(" values ");
-        MessageFormat mf = new MessageFormat(
-                "("+formatFieldList(t)+")");
+
+        String seg ="("+formatFieldList(t)+")";
+        System.out.println(seg);
+        MessageFormat mf = new MessageFormat(seg);
         
         sb.append(mf.format(new Object[] { 0 }));
         
@@ -97,7 +97,7 @@ public class BaseSqlProvider<T> {
         List<T> list = map.get("list");
         StringBuilder sb = new StringBuilder();
         sb.append("insert into ");
-        sb.append(getTableName());
+        sb.append("person");
         sb.append(" (name,age,nation,address)");
         sb.append(" values ");
         MessageFormat mf = new MessageFormat(
