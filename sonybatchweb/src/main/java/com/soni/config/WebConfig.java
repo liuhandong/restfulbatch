@@ -10,7 +10,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -32,11 +32,12 @@ public class WebConfig implements WebApplicationInitializer  {
     }
 
     */
+	
+	
     @Bean  
     public MessageSource messageSource() { 
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();  
-        messageSource.setBasename("config.messages.messages");  
-          
+    	ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();  
+        messageSource.setBasename("classpath:messages");
         return messageSource;  
     }  
     

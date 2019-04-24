@@ -50,11 +50,10 @@ dependencies {
     compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'   
     
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
-    
-    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.14.Final'
-    
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'    
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.14.Final'    
     compile group: 'org.mockito', name: 'mockito-core', version: '1.9.5'
+    compile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.4.0'
     //compile group: 'javax.el', name: 'javax.el-api', version: '3.0.1-b06'
     //https://blog.csdn.net/xichenguan/article/details/43835919    
     

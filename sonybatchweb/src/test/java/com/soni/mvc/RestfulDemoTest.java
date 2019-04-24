@@ -1,5 +1,8 @@
 package com.soni.mvc;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
@@ -14,8 +17,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.soni.common.util.JsonUtil;
 import com.soni.config.RootConfig;
 import com.soni.config.WebConfig;
+import com.soni.entity.Person;
 /**
  * Junit4中的新断言 https://blog.csdn.net/smxjant/article/details/78206435
  * https://blog.csdn.net/Victor_Cindy1/article/details/52126161
@@ -36,10 +41,25 @@ public class RestfulDemoTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
     }
 
-	@Test
+	//@Test
     public void testShowHello() throws Exception {
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/hello/abcd"))
                 .andExpect(status().isOk());
+    }
+	
+	@Test
+    public void testShowHelloValid() throws Exception {
+		Person person = new Person();
+		person.setName("12345");
+		person.setAge("tttt");
+		String param = JsonUtil.convertObjectToJsonBytes(person);
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/hello_valid")
+                .contentType(JsonUtil.APPLICATION_JSON_UTF8)
+                .content(param))
+        		.andExpect(status().isOk())
+        		.andExpect(jsonPath("$.errors", is("msgs.GWNCDT0100L-3006")))
+        		.andExpect(content().contentType(JsonUtil.APPLICATION_JSON_UTF8));
     }
 }
