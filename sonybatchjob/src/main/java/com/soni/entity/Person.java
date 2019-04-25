@@ -5,22 +5,13 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.soni.mybatis.annotations.KeyIgnore;
+import com.soni.mybatis.annotations.PrimaryKey;
 
 
 public class Person {
-	/*
-CREATE TABLE person(
-id int PRIMARY KEY AUTO_INCREMENT,
-name VARCHAR(20),
-age int,
-nation VARCHAR(20),
-address VARCHAR(20)
-);
 
-
-
-	 */
 	@KeyIgnore
+	@PrimaryKey
 	Long id;
 	@NotEmpty(message = "{msgs.GWNCDT0092L-3011}")
 	String name;

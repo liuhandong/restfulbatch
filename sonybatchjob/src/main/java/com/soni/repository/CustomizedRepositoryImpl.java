@@ -23,13 +23,13 @@ public class CustomizedRepositoryImpl extends SqlSessionDaoSupport implements Cu
     @Override
     public List<LinkedHashMap<String, Object>> myBatisSelectSQL(String sql)
     {
-        return employeeMapper.myBatisSelectSQL(sql);
+        return employeeMapper.plainSelectSQL(sql);
     }
  
     @Override
     public int myBatisUpdateSQL(String sql)
     {
-        return employeeMapper.myBatisUpdateSQL(sql);
+        return employeeMapper.plainUpdateSQL(sql);
     }
 
 	@Override
