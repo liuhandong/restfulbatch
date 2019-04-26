@@ -1,3 +1,4 @@
+/*
 apply plugin: 'java'
 apply plugin: 'eclipse'
 //apply plugin: 'org.springframework.boot'
@@ -76,3 +77,4 @@ def defaultEncoding = 'UTF-8'
 compileJava {
   options.encoding = defaultEncoding
 }
+*/
