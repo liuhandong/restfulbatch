@@ -15,9 +15,6 @@ import org.apache.ibatis.annotations.UpdateProvider;
 public interface BaseMapper<T> {
 	//https://docs.spring.io/spring-batch/4.1.x/reference/pdf/spring-batch-reference.pdf
 	//http://www.mybatis.org/mybatis-3/zh/java-api.html	
-	
-	@InsertProvider(type = BaseSqlProvider.class, method = "batchInsert")    
-	boolean batchInsert(List<T> items);
   
     @SelectProvider(type = BaseSqlProvider.class, method = "select")  
     T select(T item);    

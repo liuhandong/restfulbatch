@@ -1,10 +1,8 @@
 package com.soni.mybatis.base;
 
 import java.lang.reflect.Field;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.jdbc.SQL;
 import org.slf4j.Logger;
@@ -75,28 +73,7 @@ public class BaseSqlProvider<T> {
  
 		}
 		return fieldList;
-	}
-	
-	public String batchInsert(Map<String, List<T>> map) {
-        List<T> list = map.get("list");
-        StringBuilder sb = new StringBuilder();
-        sb.append("insert into ");
-        sb.append("person");
-        sb.append(" (name,age,nation,address)");
-        sb.append(" values ");
-        //getFields()
-        MessageFormat mf = new MessageFormat(
-                "(#'{'list[{0}].name},#'{'list[{0}].age},#'{'list[{0}].nation},#'{'list[{0}].address})");
-        for (int i = 0; i < list.size(); i++) {
-            sb.append(mf.format(new Object[] { i }));
-            if (i < list.size() - 1) {
-                sb.append(",");
-            }
-        }        
-        log.debug(sb.toString());
-        return sb.toString();
-    }
-	
+	}	
 	
 	public String delete(T bean) throws DBException {		 
 		SQL sql = new SQL(); 
