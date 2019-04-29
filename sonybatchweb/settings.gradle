@@ -8,5 +8,5 @@
  */
 
 rootProject.name = 'sonybatchweb'
-includeFlat 'sonybatchcommon'
-includeFlat 'sonybatchjob'
+//includeFlat 'sonybatchcommon'
+//includeFlat 'sonybatchjob'

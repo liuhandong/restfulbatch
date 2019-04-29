@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'sonybatchjob'
-includeFlat 'sonybatchcommon'
+//includeFlat 'sonybatchcommon'

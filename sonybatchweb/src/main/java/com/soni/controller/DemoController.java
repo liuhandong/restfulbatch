@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.soni.common.util.CommonUtil;
+import com.soni.controller.base.BaseController;
 import com.soni.entity.Person;
 
 @RestController
-public class DemoController {
+public class DemoController extends BaseController {
 	
 	@Autowired
 	JobLauncher jobLauncher;
@@ -42,11 +44,11 @@ public class DemoController {
     }
     
     @RequestMapping(value="/hello",method= RequestMethod.GET)
-    public Map<String,String> sayHello(){
+    public Map<String,String> sayHello() throws Exception{
     	Map<String,String> map =new HashMap<>();
     	map.put("name","test");
     	map.put("age","21");
-    	map.put("country","CH");
+    	map.put("country",CommonUtil.getTypeMap("java.lang.Integer"));
         return map;
     }
     
