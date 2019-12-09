@@ -20,7 +20,8 @@ public class HighOrderFunctionTest {
     public void testFindEvenNumbers() {
         //Predicate to filter out the list by even numbers
 
-        Predicate integerPredicate = element -> element%2 == 0;
+        //Predicate integerPredicate = element -> element%2 == 0;
+        Predicate integerPredicate = element -> (Integer)element%2 == 0;
         List expectedList = new ArrayList();
         expectedList.add(2);
         expectedList.add(4);

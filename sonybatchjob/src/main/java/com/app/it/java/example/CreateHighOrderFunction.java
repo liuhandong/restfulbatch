@@ -25,7 +25,7 @@ public class CreateHighOrderFunction {
         // as a argument
 
         filter = (listOfIntegers, predicate) -> {
-            //result.addAll(list.stream().filter(predicate).collect(Collectors.toList()));
+            result.addAll((Collection) list.stream().filter(predicate).collect(Collectors.toList()));
             return result;
         };
         //called the apply method of BiFunction and sent list and predicateToApply as argument
